@@ -1,0 +1,53 @@
+{% extends 'Planteer/base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+
+  <!-- BREADCRUMB -->
+  <div class="mb-3">
+    <a href="/">Home</a> ›
+    <a href="/plants/all/">All Plants</a> ›
+    <span>{{ plant.name }}</span>
+  </div>
+
+  <div class="row">
+
+    <!-- IMAGE -->
+    <div class="col-md-6">
+      {% if plant.image %}
+        <img src="{{ plant.image.url }}" class="img-fluid rounded">
+      {% endif %}
+    </div>
+
+    <!-- INFO -->
+    <div class="col-md-6">
+
+      <h2>{{ plant.name }}</h2>
+
+      <span class="badge bg-success">
+        {{ plant.get_category_display }}
+      </span>
+
+      {% if plant.is_edible %}
+        <span class="badge bg-warning text-dark">Edible</span>
+      {% endif %}
+
+      <hr>
+
+      <h5>About</h5>
+      <p>{{ plant.about }}</p>
+
+      <h5>Used For</h5>
+      <p>{{ plant.used_for }}</p>
+
+      <a href="/plants/{{ plant.id }}/update/" class="btn btn-main mt-3">
+        Edit Plant
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

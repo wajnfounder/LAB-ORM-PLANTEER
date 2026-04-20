@@ -1,0 +1,30 @@
+{% extends 'Planteer/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+
+  <h1 class="mb-5">Messages</h1>
+
+  <div class="row">
+
+    {% for msg in messages %}
+
+    <div class="col-md-6 mb-4">
+
+      <div class="message-card">
+        <h6>{{ msg.first_name }} {{ msg.last_name }}</h6>
+        <p class="text-muted">{{ msg.email }}</p>
+        <p>{{ msg.message }}</p>
+      </div>
+
+    </div>
+
+    {% empty %}
+      <p>No messages yet</p>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+{% endblock %}

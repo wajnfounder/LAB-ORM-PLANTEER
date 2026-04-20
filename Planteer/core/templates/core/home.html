@@ -1,0 +1,360 @@
+{% extends 'Planteer/base.html' %}
+
+
+{% block content %}
+
+<section class="hero">
+
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <!-- LEFT -->
+      <div class="col-md-6">
+
+        <span class="hero-badge">PLANT DATABASE</span>
+
+        <h1 class="hero-title">Planteer</h1>
+
+        <p class="hero-subtitle">
+          Plant Database For Plants Lovers
+        </p>
+
+        <p class="hero-desc">
+          Discover hundreds of beautiful plants, learn how to care for them,
+          and explore their uses. Your ultimate botanical reference.
+        </p>
+
+        <!-- SEARCH -->
+       <form method="GET" action="/plants/search/" class="hero-search">
+
+  <i class="fa-solid fa-magnifying-glass"></i>
+
+  <input type="text" name="q" placeholder="Search for a plant...">
+
+  <button type="submit">Search</button>
+
+</form>
+
+        <!-- TAGS -->
+        <div class="hero-tags">
+          <span>Tropical</span>
+          <span>Herbs</span>
+          <span>Succulents</span>
+          <span>Flowering</span>
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="col-md-6 position-relative">
+
+        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6"
+             class="hero-img">
+
+        <!-- FLOAT CARD -->
+        <div class="hero-card">
+          🌿 16+ Species
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="plants-section">
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+      <div>
+        <h3 class="plants-title">Plants</h3>
+        <p class="plants-subtitle">Learn more about plants</p>
+      </div>
+
+      <a href="/plants/all/" class="more-link">
+        More →
+      </a>
+
+    </div>
+
+<section class="categories">
+
+  <div class="container text-center">
+
+    <p class="cat-subtitle">BROWSE BY TYPE</p>
+
+    <h2 class="cat-title">Plant Categories</h2>
+
+    <div class="row mt-4">
+
+      <!-- CARD -->
+      <div class="col-md-2 col-6 mb-4">
+        <a href="/plants/all/" class="cat-card">
+          <img src="https://images.unsplash.com/photo-1616627981450-2b5cdbb0b7b0">
+          <span>Tropical</span>
+        </a>
+      </div>
+
+      <div class="col-md-2 col-6 mb-4">
+        <a href="/plants/all/" class="cat-card">
+          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+          <span>Succulents</span>
+        </a>
+      </div>
+
+      <div class="col-md-2 col-6 mb-4">
+        <a href="/plants/all/" class="cat-card">
+          <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443">
+          <span>Herbs</span>
+        </a>
+      </div>
+
+      <div class="col-md-2 col-6 mb-4">
+        <a href="/plants/all/" class="cat-card">
+          <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c7">
+          <span>Ferns</span>
+        </a>
+      </div>
+
+      <div class="col-md-2 col-6 mb-4">
+        <a href="/plants/all/" class="cat-card">
+          <img src="https://images.unsplash.com/photo-1524594154908-edd3c6d0b0b5">
+          <span>Flowering</span>
+        </a>
+      </div>
+
+      <div class="col-md-2 col-6 mb-4">
+        <a href="/plants/all/" class="cat-card">
+          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+          <span>Trees</span>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
+    <!-- CARDS -->
+    <div class="row">
+
+      {% for plant in plants %}
+
+      <div class="col-md-4 mb-4">
+
+        <div class="plant-card">
+
+          <img src="{{ plant.image.url }}">
+
+          <h5>{{ plant.name }}</h5>
+
+          <p>{{ plant.about|truncatechars:50 }}</p>
+
+          <span class="plant-category">
+            {{ plant.get_category_display }}
+          </span>
+
+        </div>
+
+      </div>
+
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+
+<section class="why-section">
+
+  <div class="container text-center">
+
+    <p class="why-subtitle">WHY PLANTEER</p>
+
+    <h2 class="why-title">More Than Just Plants</h2>
+
+    <div class="row mt-5">
+
+      <!-- CARD 1 -->
+      <div class="col-md-3 mb-4">
+        <div class="why-card">
+          <div class="icon-box">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <h5>Curated Collection</h5>
+          <p>
+            Every plant in our catalog is carefully selected for quality,
+            beauty, ease of care.
+          </p>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="col-md-3 mb-4">
+        <div class="why-card">
+          <div class="icon-box">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+          <h5>Expert Guidance</h5>
+          <p>
+            Detailed care instructions and tips from experienced botanists
+            for every plant.
+          </p>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="col-md-3 mb-4">
+        <div class="why-card">
+          <div class="icon-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <h5>Easy Discovery</h5>
+          <p>
+            Filter by category, edibility, and more to find the perfect plant
+            for your space.
+          </p>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="col-md-3 mb-4">
+        <div class="why-card">
+          <div class="icon-box">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <h5>Plant Community</h5>
+          <p>
+            Join thousands of plant lovers sharing their growing journeys
+            and experiences.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+   <section class="testimonials">
+
+  <div class="container text-center">
+
+    <p class="test-subtitle">WHAT PEOPLE SAY</p>
+    <h2 class="test-title">Loved by Plant Lovers</h2>
+
+    <div id="testCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+
+      <div class="carousel-inner">
+
+        <!-- SLIDE 1 -->
+        <div class="carousel-item active">
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="test-card">
+                <p class="test-text">
+                 It's transformed my apartment. I went from zero plants to a full indoor jungle.
+                </p>
+
+                <div class="user">
+                  <div class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                  <div>
+                    <h6>Abdulmalik Aqeel</h6>
+                    <small>Interior Designer</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="test-card">
+                <p class="test-text">
+                  The plant detail pages are incredibly informative.
+                </p>
+
+                <div class="user">
+                  <div class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                  <div>
+                    <h6>Arwa Mohammed</h6>
+                    <small>Plant Enthusiast</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carousel-item">
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="test-card">
+                <p class="test-text">
+                  Amazing experience! The app is clean and simple.
+                </p>
+
+                <div class="user">
+                  <div class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                  <div>
+                    <h6>Sarah Ali</h6>
+                    <small>Designer</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="test-card">
+                <p class="test-text">
+                  I discovered many new plants thanks to this platform!
+                </p>
+
+                <div class="user">
+                  <div class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                  <div>
+                    <h6>Khalid Ahmed</h6>
+                    <small>Gardener</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ARROWS -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#testCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#testCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
