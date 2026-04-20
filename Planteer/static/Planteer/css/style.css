@@ -1,199 +1,3 @@
-body {
-  padding-top: 80px;
-}
-
-.brand-color {
-  color: #2e5d34 !important;
-}
-
-.active-link {
-  color: #2e5d34 !important;
-  font-weight: 600;
-}
-
-.nav-link {
-  color: #6c757d !important; 
-}
-
-.nav-link:hover {
-  color: #2e5d34 !important;
-}
-
-.nav-linkc {
-  color: #2e5d34;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.btn-add {
-  margin-left: 8px;
-  background: #2e5d34;
-  color: white;
-  border: none;
-  padding: 5px 13px;
-  border-radius: 8px;
-  text-decoration: none;
-}
-
-
-.categories {
-  margin-top: 80px;
-}
-
-.cat-subtitle {
-  color: #9aa89a;
-  font-size: 12px;
-  letter-spacing: 2px;
-}
-
-.cat-title {
-  font-size: 36px;
-  font-weight: 700;
-  color: #2e5d34;
-}
-
-.cat-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-
-.cat-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  transition: 0.3s;
-}
-
-.cat-card span {
-  position: absolute;
-  bottom: 10px;
-  left: 15px;
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.cat-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-}
-
-.cat-card:hover img {
-  transform: scale(1.05);
-}
-
-.cat-card span{
-  color: black;
-}
-
-
-.plants-section {
-  margin-top: 80px;
-}
-
-.plants-title {
-  font-weight: 700;
-  color: #2e5d34;
-}
-
-.plants-subtitle {
-  color: #777;
-  font-size: 14px;
-}
-
-.more-link {
-  text-decoration: none;
-  color: #2e5d34;
-  font-weight: 600;
-}
-
-.plant-card img {
-  width: 100%;
-  border-radius: 15px;
-  margin-bottom: 10px;
-}
-
-.plant-card h5 {
-  font-weight: 600;
-}
-
-.plant-card p {
-  color: #777;
-  font-size: 14px;
-}
-
-.plant-category {
-  font-size: 13px;
-  color: #2e5d34;
-  font-weight: 600;
-}
-
-
-.why-section {
-  margin-top: 80px;
-  padding: 60px 0;
-  background: #f3efe8;
-}
-
-.why-subtitle {
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #9aa89a;
-}
-
-.why-title {
-  font-size: 36px;
-  font-weight: 700;
-  color: #2e5d34;
-}
-
-.why-card {
-  background: white;
-  padding: 30px 20px;
-  border-radius: 20px;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.why-card:hover {
-  transform: translateY(-5px);
-}
-
-.icon-box {
-  width: 60px;
-  height: 60px;
-  background: #e6f4ea;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 15px;
-  font-size: 20px;
-  color: #2e5d34;
-}
-
-.why-card h5 {
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.why-card p {
-  color: #777;
-  font-size: 14px;
-}
-
-
-
-
-
 /* ================= GLOBAL ================= */
 body {
   padding-top: 80px;
@@ -220,6 +24,22 @@ a {
 .active-link {
   color: #2e5d34 !important;
   font-weight: 600;
+}
+
+.nav-linkc {
+  color: #2e5d34;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn-add {
+  margin-left: 8px;
+  background: #2e5d34;
+  color: white;
+  border: none;
+  padding: 5px 13px;
+  border-radius: 8px;
+  text-decoration: none;
 }
 
 /* ================= HERO ================= */
@@ -318,6 +138,10 @@ a {
 /* ================= CATEGORIES ================= */
 .categories {
   margin-top: 80px;
+  padding: 60px 0;
+  background-color: #f3efe8;
+  background-image: radial-gradient(#c8b99a 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 .cat-subtitle {
@@ -356,6 +180,7 @@ a {
   color: white;
   font-weight: 600;
   font-size: 14px;
+  z-index: 3;
 }
 
 .cat-card::after {
@@ -369,13 +194,15 @@ a {
   transform: scale(1.05);
 }
 
-/* ================= PLANTS ================= */
+/* ================= PLANTS SECTION ================= */
 .plants-section {
   margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 .plants-title {
   font-weight: 700;
+  color: #2e5d34;
 }
 
 .plants-subtitle {
@@ -389,19 +216,30 @@ a {
   font-weight: 600;
 }
 
+/* ================= PLANT CARD ================= */
+.plant-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.plant-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
 .plant-card img {
   width: 100%;
-  border-radius: 15px;
-  margin-bottom: 10px;
+  height: 200px;
+  object-fit: cover;
+  transition: 0.4s;
 }
 
-.plant-card h5 {
-  font-weight: 600;
-}
-
-.plant-card p {
-  color: #777;
-  font-size: 14px;
+.plant-card:hover img {
+  transform: scale(1.05);
 }
 
 .plant-category {
@@ -409,6 +247,104 @@ a {
   color: #2e5d34;
   font-weight: 600;
 }
+
+/* ================= PLANT INFO (Home Cards) ================= */
+.plant-info {
+  padding: 16px;
+  background: white;
+  border-top: 1px solid #f0f0f0;
+}
+
+.plant-info h5 {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.plant-info p {
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+/* ================= BADGES ================= */
+.card-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.badge-category {
+  background: rgba(46, 93, 52, 0.9);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  backdrop-filter: blur(4px);
+}
+
+.badge-edible {
+  background: rgba(243, 156, 18, 0.9);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  backdrop-filter: blur(4px);
+}
+
+/* ================= CARD BODY (All Plants Page) ================= */
+.card-body {
+  padding: 16px 16px 20px 16px;
+  background: white;
+  border-top: 2px solid #f0f0f0;
+}
+
+.card-body h5 {
+  font-weight: 600;
+  margin-bottom: 5px;
+  padding: 0 16px;
+}
+
+.card-body p {
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 10px;
+  padding: 0 16px;
+}
+
+.details-link {
+  color: #2e5d34;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0 16px;
+}
+
+.details-link:hover::after {
+  margin-left: 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-actions a {
+  margin-left: 13px;
+}
+
+.card-actions i {
+  color: #2e5d34;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card-actions i:hover {
+  color: #2e5d34;
+  transform: scale(1.1);
+}
+
 
 /* ================= WHY SECTION ================= */
 .why-section {
@@ -484,12 +420,9 @@ a {
   line-height: 1.6;
 }
 
-
-
 #testCarousel {
   position: relative;
 }
-
 
 .carousel-control-prev,
 .carousel-control-next {
@@ -500,11 +433,9 @@ a {
   height: auto;
 }
 
-
 .carousel-control-prev {
   left: -60px;
 }
-
 
 .carousel-control-next {
   right: -60px;
@@ -521,9 +452,11 @@ a {
   height: 45px;
   border-radius: 50%;
   background: rgba(255,255,255,0.2);
+  color: #234d20;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 18px;
 }
 
 .user h6 {
@@ -535,24 +468,25 @@ a {
   color: #ccc;
 }
 
-
-.user-icon {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  color: #234d20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
-
-/* ===== HEADER ===== */
-
+/* ================= BREADCRUMB & PAGE HEADER ================= */
 .breadcrumb-link {
   color: #9aa89a;
   font-size: 17px;
+  text-decoration: none;
+}
+
+.breadcrumb-link:hover {
+  color: #2e5d34;
+}
+
+.breadcrumb-green {
+  color: #2e5d34;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.breadcrumb-green:hover {
+  color: #24492a;
 }
 
 .breadcrumb-current {
@@ -566,30 +500,45 @@ a {
   color: #1c1c1c;
   letter-spacing: -0.5px;
 }
+
 .page-subtitle {
   color: #8c8c8c;
   font-size: 15px;
   margin-top: 5px;
 }
 
-/* ===== BUTTON  ===== */
-
+/* ================= BUTTONS ================= */
 .btn-main {
   background: #2e5d34;
   color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: 500;
-  transition: 0.3s;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
 .btn-main:hover {
-  background: #244a29;
+  background: #24492a;
   color: white;
 }
 
+.btn-light {
+  background: #f3efe8;
+  border: 1px solid #e8ddd0;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  color: #5a4a38;
+  transition: 0.2s;
+}
 
-/* ===== FILTER BOX ===== */
+.btn-light:hover {
+  background: #e8ddd0;
+  color: #3d2e1e;
+}
+
+/* ================= FILTER BOX ================= */
 .filter-box {
   background: #f6f7f6;
   padding: 20px;
@@ -603,13 +552,13 @@ a {
   margin-bottom: 10px;
 }
 
-/* ===== FILTER ITEMS ===== */
 .filter-item {
   display: block;
   padding: 10px 12px;
   border-radius: 10px;
   color: #333;
   margin-bottom: 6px;
+  text-decoration: none;
 }
 
 .filter-item:hover {
@@ -617,164 +566,57 @@ a {
   color: #2e5d34;
 }
 
-/* ACTIVE */
 .filter-item.active {
   background: #2e5d34;
   color: white;
 }
 
-/* CLEAR */
 .clear-link {
   font-size: 12px;
   color: #e74c3c;
 }
 
-/* ===== TEXT ===== */
 .showing-text {
   color: #666;
   margin-bottom: 15px;
 }
 
-/* ===== CARD ===== */
-.plant-card {
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  transition: 0.3s;
-}
-
-.plant-card:hover {
-  transform: translateY(-5px);
-}
-
-.plant-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-/* BADGES */
-.card-badges {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: flex;
-  gap: 6px;
-}
-
-.badge-category {
-  background: #2e5d34;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-
-.badge-edible {
-  background: #f39c12;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-
-/* CONTENT */
-.card-body {
-  padding: 15px;
-}
-
-.card-body h5 {
-  font-weight: 600;
-}
-
-.card-body p {
-  color: #777;
-  font-size: 14px;
-}
-
-/* DETAILS */
-.details-link {
-  color: #2e5d34;
-  font-weight: 500;
-}
-
-/* ACTIONS */
-.card-actions i {
-  margin-left: 10px;
-  color: #aaa;
-  cursor: pointer;
-}
-
-
-/* ================= BASE ================= */
-body {
-  background: #f8f9f8;
-  font-family: Arial, sans-serif;
-}
-
-/* ================= PAGE ================= */
-.page-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #1f2d1f;
-}
-
-.breadcrumb-link {
-  color: #7a8a7a;
-  text-decoration: none;
-}
-
-.breadcrumb-link:hover {
-  color: #2e5d34;
-}
-
-/* ================= FORM BOX ================= */
+/* ================= FORM ================= */
 .plant-form {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 20px;
-  max-width: 900px;
+  background: #fdf8f3;
+  border: 1px solid #e8ddd0;
+  padding: 40px;
+  border-radius: 24px;
 }
 
-/* ================= LABEL ================= */
 .plant-form label {
   font-weight: 600;
   margin-bottom: 6px;
   display: block;
-  color: #2b2b2b;
+  color: #2e5d34;
 }
 
-/* ================= INPUT ================= */
 .form-control {
   border-radius: 14px;
   padding: 12px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e0d8cc;
+  background: #ffffff;
   transition: 0.2s;
 }
 
-/* FOCUS */
 .form-control:focus {
   border-color: #2e5d34;
   box-shadow: 0 0 0 2px rgba(46, 93, 52, 0.1);
 }
 
-/* TEXTAREA */
 textarea.form-control {
   resize: none;
 }
 
-/* ================= ROW SPACING ================= */
-.mb-4 {
-  margin-bottom: 20px;
-}
-
-/* ================= SELECT ================= */
 select.form-control {
   height: 45px;
 }
 
-/* ================= SWITCH ================= */
 .form-check-input {
   width: 45px;
   height: 22px;
@@ -786,45 +628,151 @@ select.form-control {
   border-color: #2e5d34;
 }
 
-/* ================= BUTTON ================= */
-.btn-main {
-  background: #2e5d34;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 12px;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.btn-main:hover {
-  background: #24492a;
-}
-
-/* ================= CANCEL ================= */
-.btn-light {
-  background: #f1f1f1;
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
-}
-
-/* ================= FLEX BUTTONS ================= */
 .d-flex.gap-3 {
   margin-top: 20px;
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .plant-form {
-    padding: 20px;
-  }
+
+/* ================= DETAIL PAGE ================= */
+.detail-img {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  max-height: 420px;
+}
+
+.detail-info-box {
+  background: #fdf8f3;
+  border: 1px solid #e8ddd0;
+  border-radius: 20px;
+  padding: 30px;
+  height: 100%;
+}
+
+.detail-name {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1c1c1c;
+  margin-bottom: 12px;
+}
+
+.detail-label {
+  font-weight: 700;
+  color: #2e5d34;
+  margin-bottom: 6px;
+}
+
+.detail-text {
+  color: #5a4a38;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+}
+
+.comment-form-box {
+  background: #fdf8f3;
+  border: 1px solid #e8ddd0;
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.comment-form-box label {
+  font-weight: 600;
+  color: #2e5d34;
+  margin-bottom: 6px;
+  display: block;
 }
 
 
 
+/* ================= CONTACT ================= */
+.contact-form-box {
+  background: #fdf8f3;
+  border: 1px solid #e8ddd0;
+  border-radius: 24px;
+  padding: 40px;
+}
 
+.contact-form-box label {
+  font-weight: 600;
+  color: #2e5d34;
+  margin-bottom: 6px;
+  display: block;
+}
 
+.alert-success-custom {
+  background: #e6f4ea;
+  color: #2e5d34;
+  border-radius: 12px;
+  padding: 14px;
+  font-weight: 600;
+}
+
+/* ================= MESSAGES CARD ================= */
+.msg-card {
+  background-color: #fdf8f3;
+  border: 1px solid #e8ddd0;
+  border-radius: 16px;
+  padding: 24px;
+  transition: box-shadow 0.3s ease;
+}
+
+.msg-card:hover {
+  box-shadow: 0 6px 20px rgba(180, 150, 110, 0.15);
+}
+
+.msg-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.msg-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: #e8ddd0;
+  color: #7a6248;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.msg-name {
+  margin: 0;
+  font-weight: 600;
+  color: #3d2e1e;
+  font-size: 15px;
+}
+
+.msg-email {
+  margin: 0;
+  font-size: 13px;
+  color: #a08060;
+}
+
+.msg-body {
+  color: #5a4a38;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+  border-top: 1px solid #e8ddd0;
+  padding-top: 14px;
+}
+
+.msg-date {
+  font-size: 12px;
+  color: #b0967a;
+}
+
+/* ================= FOOTER ================= */
 .footer-pro {
   background: #f3efe8;
   padding: 50px 0;
@@ -921,95 +869,17 @@ select.form-control {
   color: #6c757d;
 }
 
-.hero {
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-}
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .plant-form {
+    padding: 20px;
+  }
 
-.hero-title {
-  font-size: 64px;
-  font-weight: 700;
-  color: #2e5d34;
-}
+  .hero-title {
+    font-size: 40px;
+  }
 
-.hero-subtitle {
-  font-size: 20px;
-  color: #6c757d;
+  .contact-form-box {
+    padding: 20px;
+  }
 }
-
-.hero-desc {
-  color: #6c757d;
-  max-width: 450px;
-  margin-bottom: 20px;
-}
-
-.hero-badge {
-  background: #e6f4ea;
-  color: #2e5d34;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  display: inline-block;
-  margin-bottom: 15px;
-}
-
-.hero-search {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border: 2px solid #2e5d34;
-  border-radius: 12px;
-  padding: 5px;
-  max-width: 450px;
-}
-
-.hero-search i {
-  margin-left: 10px;
-  color: #aaa;
-}
-
-.hero-search input {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 10px;
-}
-
-.hero-search button {
-  background: #2e5d34;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 10px;
-}
-
-.hero-tags {
-  margin-top: 15px;
-}
-
-.hero-tags span {
-  display: inline-block;
-  background: #f1f1f1;
-  padding: 6px 12px;
-  border-radius: 20px;
-  margin-right: 8px;
-  font-size: 12px;
-}
-
-.hero-img {
-  width: 100%;
-  border-radius: 25px;
-}
-
-.hero-card {
-  position: absolute;
-  bottom: -20px;
-  left: 20px;
-  background: white;
-  padding: 10px 15px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  font-size: 14px;
-}
-

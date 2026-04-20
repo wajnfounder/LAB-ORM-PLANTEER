@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import Plant, Contact
+from .models import Plant
 from .forms import PlantForm
 from django.shortcuts import redirect, get_object_or_404
-
+from .models import Plant, Comment
 
 # Create your views here.
 
@@ -30,14 +30,22 @@ def all_plants_view(request):
 
 
 
-
 def plant_detail_view(request, id):
     plant = get_object_or_404(Plant, id=id)
+    comments = plant.comments.all().order_by('-created_at')
+
+    if request.method == 'POST':
+        Comment.objects.create(
+            plant=plant,
+            name=request.POST.get('name'),
+            content=request.POST.get('content'),
+        )
+        return redirect(f'/plants/{id}/detail/')
 
     return render(request, 'plants/detail.html', {
-        'plant': plant
+        'plant': plant,
+        'comments': comments,
     })
-
 
 
 
@@ -138,8 +146,7 @@ def add_plant(request):
         form = PlantForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('all_plants')  
-
+            return redirect('all_plants')
     else:
         form = PlantForm()
 

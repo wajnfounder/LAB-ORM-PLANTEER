@@ -1,49 +1,103 @@
 {% extends 'Planteer/base.html' %}
 {% block content %}
 
-<div class="container mt-4">
+<div class="container mt-4 mb-5">
 
   <!-- BREADCRUMB -->
-  <div class="mb-3">
-    <a href="/">Home</a> ›
-    <a href="/plants/all/">All Plants</a> ›
-    <span>{{ plant.name }}</span>
+  <div class="mb-4">
+    <a href="/" class="breadcrumb-link">Home</a>
+    <span class="mx-1">›</span>
+    <a href="/plants/all/" class="breadcrumb-green">All Plants</a>
+    <span class="mx-1">›</span>
+    <span class="breadcrumb-link">{{ plant.name }}</span>
   </div>
 
+  <!-- PLANT INFO -->
   <div class="row">
 
     <!-- IMAGE -->
     <div class="col-md-6">
       {% if plant.image %}
-        <img src="{{ plant.image.url }}" class="img-fluid rounded">
+        <img src="{{ plant.image.url }}" class="detail-img">
       {% endif %}
     </div>
 
     <!-- INFO -->
     <div class="col-md-6">
+      <div class="detail-info-box">
 
-      <h2>{{ plant.name }}</h2>
+        <h2 class="detail-name">{{ plant.name }}</h2>
 
-      <span class="badge bg-success">
-        {{ plant.get_category_display }}
-      </span>
+        <div class="mb-3">
+          <span class="badge-category">{{ plant.get_category_display }}</span>
+          {% if plant.is_edible %}
+            <span class="badge-edible ms-2">Edible</span>
+          {% endif %}
+        </div>
 
-      {% if plant.is_edible %}
-        <span class="badge bg-warning text-dark">Edible</span>
-      {% endif %}
+        <hr>
 
-      <hr>
+        <div class="detail-section">
+          <h6 class="detail-label">About</h6>
+          <p class="detail-text">{{ plant.about }}</p>
+        </div>
 
-      <h5>About</h5>
-      <p>{{ plant.about }}</p>
+        <div class="detail-section">
+          <h6 class="detail-label">Used For</h6>
+          <p class="detail-text">{{ plant.used_for }}</p>
+        </div>
 
-      <h5>Used For</h5>
-      <p>{{ plant.used_for }}</p>
+        <a href="/plants/{{ plant.id }}/update/" class="btn btn-main mt-3">
+          Edit Plant
+        </a>
 
-      <a href="/plants/{{ plant.id }}/update/" class="btn btn-main mt-3">
-        Edit Plant
-      </a>
+      </div>
+    </div>
 
+  </div>
+
+  <hr class="mt-5">
+
+  <!-- COMMENTS -->
+  <div class="row mt-4">
+
+    <!-- COMMENTS LIST -->
+    <div class="col-md-8">
+      <h4 class="detail-label mb-4">Comments ({{ comments|length }})</h4>
+
+      {% for comment in comments %}
+      <div class="msg-card mb-3">
+        <div class="msg-card-header">
+          <div class="msg-avatar">{{ comment.name|first }}</div>
+          <div>
+            <h6 class="msg-name">{{ comment.name }}</h6>
+            <p class="msg-email">{{ comment.created_at|date:"d M Y" }}</p>
+          </div>
+        </div>
+        <p class="msg-body">{{ comment.content }}</p>
+      </div>
+      {% empty %}
+        <p class="text-muted">No comments yet. Be the first! 🌿</p>
+      {% endfor %}
+    </div>
+
+    <!-- ADD COMMENT -->
+    <div class="col-md-4">
+      <div class="comment-form-box">
+        <h5 class="detail-label mb-4">Add a Comment</h5>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label>Your Name *</label>
+            <input type="text" name="name" class="form-control" placeholder="e.g. Sara" required>
+          </div>
+          <div class="mb-3">
+            <label>Comment *</label>
+            <textarea name="content" class="form-control" rows="4" placeholder="Write your comment..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-main w-100">Submit 🌿</button>
+        </form>
+      </div>
     </div>
 
   </div>

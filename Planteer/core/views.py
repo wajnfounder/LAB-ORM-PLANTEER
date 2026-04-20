@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from plants.models import Plant
 from django.shortcuts import render, redirect
-from plants.models import Contact
+from .models import Contact
  
 
 
@@ -26,21 +26,43 @@ def home(request):
 
 
 def contact(request):
+    errors = []
+    form_data = {}
+
     if request.method == 'POST':
-        Contact.objects.create(
-            first_name=request.POST.get('first_name'),
-            last_name=request.POST.get('last_name'),
-            email=request.POST.get('email'),
-            message=request.POST.get('message'),
-        )
-        return redirect('/messages/')
+        first_name = request.POST.get('first_name', '').strip()
+        last_name = request.POST.get('last_name', '').strip()
+        email = request.POST.get('email', '').strip()
+        message = request.POST.get('message', '').strip()
 
-    return render(request, 'core/contact.html')
+        form_data = {
+            'first_name': first_name,
+            'last_name': last_name,
+            'email': email,
+            'message': message,
+        }
 
+        if not first_name:
+            errors.append('First name is required')
+        if not last_name:
+            errors.append('Last name is required')
+        if not email or '@' not in email:
+            errors.append('Valid email is required')
+        if not message:
+            errors.append('Message is required')
+
+        if not errors:
+            Contact.objects.create(**form_data)
+            return redirect('/contact/?sent=1')
+
+    return render(request, 'core/contact.html', {
+        'errors': errors,
+        'form_data': form_data,
+    })
 
 def messages_view(request):
-    messages = Contact.objects.all().order_by('-created_at')
+    contacts = Contact.objects.all().order_by('-created_at')
 
     return render(request, 'core/messages.html', {
-        'messages': messages
+        'contacts': contacts
     })
