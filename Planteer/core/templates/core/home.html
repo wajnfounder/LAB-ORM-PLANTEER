@@ -114,16 +114,7 @@
     <div class="row">
       {% for plant in plants %}
       <div class="col-md-4 mb-4">
-        <div class="plant-card">
-          {% if plant.image %}
-            <img src="{{ plant.image.url }}">
-          {% endif %}
-          <div class="plant-info">
-            <h5>{{ plant.name }}</h5>
-            <p>{{ plant.about|truncatechars:50 }}</p>
-            <span class="plant-category">{{ plant.get_category_display }}</span>
-          </div>
-        </div>
+        {% include "plants/partials/plant_card_simple.html" with plant=plant %}
       </div>
       {% endfor %}
     </div>
@@ -259,4 +250,4 @@
   </div>
 </section>
 
-{% endblock %} 
+{% endblock %}

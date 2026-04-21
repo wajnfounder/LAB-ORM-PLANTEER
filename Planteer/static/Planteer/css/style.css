@@ -772,6 +772,44 @@ select.form-control {
   color: #b0967a;
 }
 
+/* ================= COUNTRY section ================= */
+.country-list {
+  max-height: 180px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #2e5d34 #f0f0f0;
+}
+
+.country-badge {
+  background: #e6f4ea;
+  color: #2e5d34;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.country-badge:hover {
+  background: #2e5d34;
+  color: white;
+}
+
+
+
+/* ================= DELETE BOX ================= */
+.delete-box {
+  background: #fdf8f3;
+  border: 1px solid #e8ddd0;
+  border-radius: 24px;
+  padding: 40px;
+}
+
+.delete-icon {
+  font-size: 50px;
+}
+
 /* ================= FOOTER ================= */
 .footer-pro {
   background: #f3efe8;

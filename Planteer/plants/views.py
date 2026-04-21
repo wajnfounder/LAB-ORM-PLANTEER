@@ -2,18 +2,18 @@ from django.shortcuts import render
 from .models import Plant
 from .forms import PlantForm
 from django.shortcuts import redirect, get_object_or_404
-from .models import Plant, Comment
+from .models import Plant, Comment, Country
 
 # Create your views here.
 
 
 
 def all_plants_view(request):
-
     plants = Plant.objects.all()
-
+    
     category = request.GET.get('category')
     edible = request.GET.get('edible')
+    country = request.GET.get('country')
 
     if category:
         plants = plants.filter(category=category)
@@ -21,18 +21,25 @@ def all_plants_view(request):
     if edible == 'true':
         plants = plants.filter(is_edible=True)
 
+    if country:
+        plants = plants.filter(countries__id=country)
+
+    countries = Country.objects.all()
+
     return render(request, 'plants/all.html', {
         'plants': plants,
         'categories': Plant.Category.choices,
-        'selected_category': category,   
-        'selected_edible': edible      
+        'selected_category': category,
+        'selected_edible': edible,
+        'selected_country': country,
+        'countries': countries,
     })
-
 
 
 def plant_detail_view(request, id):
     plant = get_object_or_404(Plant, id=id)
     comments = plant.comments.all().order_by('-created_at')
+    related_plants = Plant.objects.filter(category=plant.category).exclude(id=plant.id)[:3]
 
     if request.method == 'POST':
         Comment.objects.create(
@@ -45,8 +52,8 @@ def plant_detail_view(request, id):
     return render(request, 'plants/detail.html', {
         'plant': plant,
         'comments': comments,
+        'related_plants': related_plants,
     })
-
 
 
 
@@ -73,10 +80,6 @@ def create_plant_view(request):
         return redirect('/plants/all/')
 
     return render(request, 'plants/new.html')
-
-
-
-
 
 
 def update_plant_view(request, id):
@@ -111,8 +114,6 @@ def update_plant_view(request, id):
 
 
 
-
-
 def delete_plant_view(request, id):
     plant = get_object_or_404(Plant, id=id)
     plant.delete()
@@ -120,23 +121,38 @@ def delete_plant_view(request, id):
 
 
 
-
-
 def search_view(request):
-    query = request.GET.get('q')
+    query = request.GET.get('q', '').strip()
+    category = request.GET.get('category')
+    edible = request.GET.get('edible')
 
     plants = Plant.objects.all()
 
-    if query:
+    # check if category is there 
+    category_match = None
+    for value, label in Plant.Category.choices:
+        if query.lower() == label.lower():
+            category_match = value
+            break
+
+    if category_match:
+        plants = plants.filter(category=category_match)
+        category = category_match
+    elif query:
         plants = plants.filter(name__icontains=query)
+
+    if category and not category_match:
+        plants = plants.filter(category=category)
+
+    if edible == 'true':
+        plants = plants.filter(is_edible=True)
 
     return render(request, 'plants/all.html', {
         'plants': plants,
         'categories': Plant.Category.choices,
-        'selected_category': None,
-        'selected_edible': None
+        'selected_category': category,
+        'selected_edible': edible
     })
-
 
 
 
@@ -153,4 +169,11 @@ def add_plant(request):
     return render(request, 'plants/new.html', {'form': form})
 
 
+def country_plants_view(request, id):
+    country = get_object_or_404(Country, id=id)
+    plants = Plant.objects.filter(countries__id=id)
 
+    return render(request, 'plants/country_plants.html', {
+        'country': country,
+        'plants': plants,
+    })

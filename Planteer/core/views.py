@@ -66,3 +66,5 @@ def messages_view(request):
     return render(request, 'core/messages.html', {
         'contacts': contacts
     })
+
+

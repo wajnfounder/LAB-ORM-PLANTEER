@@ -1,0 +1,31 @@
+<div class="plant-card">
+  <div class="card-badges">
+    <span class="badge-category">{{ plant.get_category_display }}</span>
+    {% if plant.is_edible %}
+      <span class="badge-edible">Edible</span>
+    {% endif %}
+  </div>
+
+  {% if plant.image %}
+    <img src="{{ plant.image.url }}" alt="{{ plant.name }}">
+  {% endif %}
+
+  <div class="card-body">
+    <h5>{{ plant.name }}</h5>
+    <p>{{ plant.about|truncatechars:80 }}</p>
+    <div class="plant-footer">
+      <a href="/plants/{{ plant.id }}/detail/" class="details-link">
+        View Details →
+      </a>
+      <div class="card-actions">
+        <a href="/plants/{{ plant.id }}/update/">
+          <i class="fa-solid fa-pen"></i>
+        </a>
+        <a href="/plants/{{ plant.id }}/delete/"
+           onclick="return confirm('Are you sure?')">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -47,6 +47,23 @@
           <p class="detail-text">{{ plant.used_for }}</p>
         </div>
 
+        <!-- COUNTRIES -->
+        {% if plant.countries.all %}
+        <div class="detail-section">
+          <h6 class="detail-label">Native To</h6>
+          <div class="d-flex flex-wrap gap-2">
+            {% for country in plant.countries.all %}
+              <a href="/plants/{{ country.id }}/country/" class="country-badge">
+                {% if country.flag %}
+                  <img src="{{ country.flag.url }}" style="width:20px; border-radius:3px;" class="me-1">
+                {% endif %}
+                {{ country.name }}
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
         <a href="/plants/{{ plant.id }}/update/" class="btn btn-main mt-3">
           Edit Plant
         </a>
@@ -103,5 +120,29 @@
   </div>
 
 </div>
+
+<!-- RELATED PLANTS -->
+{% if related_plants %}
+<hr class="mt-5">
+<div class="container mt-4 mb-5">
+  <h4 class="detail-label mb-4">Related Plants</h4>
+  <div class="row">
+    {% for related in related_plants %}
+    <div class="col-md-4 mb-4">
+      <div class="plant-card">
+        {% if related.image %}
+          <img src="{{ related.image.url }}">
+        {% endif %}
+        <div class="plant-info">
+          <h5>{{ related.name }}</h5>
+          <p>{{ related.about|truncatechars:60 }}</p>
+          <a href="/plants/{{ related.id }}/detail/" class="details-link">View Details →</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
 
 {% endblock %}
