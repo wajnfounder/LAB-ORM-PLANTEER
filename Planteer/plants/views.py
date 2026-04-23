@@ -7,7 +7,6 @@ from .models import Plant, Comment, Country
 # Create your views here.
 
 
-
 def all_plants_view(request):
     plants = Plant.objects.all()
     
@@ -56,10 +55,7 @@ def plant_detail_view(request, id):
     })
 
 
-
-
 def create_plant_view(request):
-
     if request.method == 'POST':
         name = request.POST.get('name')
         about = request.POST.get('about')
@@ -90,35 +86,26 @@ def update_plant_view(request, id):
         plant.about = request.POST.get('about')
         plant.used_for = request.POST.get('used_for')
 
-       
         image = request.FILES.get('image')
         if image:
             plant.image = image
 
-       
         category = request.POST.get('category')
-        print("CATEGORY:", category)  
-
         if not category:
-            category = plant.category  
+            category = plant.category
 
         plant.category = category
-
         plant.is_edible = request.POST.get('is_edible') == 'on'
-
         plant.save()
         return redirect('/plants/all/')
 
     return render(request, 'plants/update.html', {'plant': plant})
 
 
-
-
 def delete_plant_view(request, id):
     plant = get_object_or_404(Plant, id=id)
     plant.delete()
     return redirect('/plants/all/')
-
 
 
 def search_view(request):
@@ -128,7 +115,6 @@ def search_view(request):
 
     plants = Plant.objects.all()
 
-    # check if category is there 
     category_match = None
     for value, label in Plant.Category.choices:
         if query.lower() == label.lower():
@@ -155,8 +141,6 @@ def search_view(request):
     })
 
 
-
-
 def add_plant(request):
     if request.method == 'POST':
         form = PlantForm(request.POST, request.FILES)
@@ -177,3 +161,20 @@ def country_plants_view(request, id):
         'country': country,
         'plants': plants,
     })
+
+
+def toggle_favourite(request, id):
+    get_object_or_404(Plant, id=id)
+    redirect_url = request.GET.get('next', '/plants/all/')
+    response = redirect(redirect_url)
+
+    favs = request.COOKIES.get('favs', '')
+    fav_list = [f for f in favs.split(',') if f]
+
+    if str(id) in fav_list:
+        fav_list.remove(str(id))
+    else:
+        fav_list.append(str(id))
+
+    response.set_cookie('favs', ','.join(fav_list), max_age=60*60*24*30)
+    return response

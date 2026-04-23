@@ -6,6 +6,7 @@
   <div class="container">
     <div class="row align-items-center">
 
+
       <!-- LEFT -->
       <div class="col-md-6">
         <span class="hero-badge">PLANT DATABASE</span>
@@ -32,75 +33,54 @@
         </div>
       </div>
 
-      <!-- RIGHT -->
-      <div class="col-md-6 position-relative">
-        <img src="https://res.cloudinary.com/dd2nfo3ua/image/upload/w_1200/q_auto/f_auto/v1776683979/%D9%87%D9%8A%D8%B1%D9%88_hbtk5u.avif" class="hero-img">
-        <div class="hero-card">🌿 16+ Species</div>
-      </div>
+      <div class="hero-stats">
 
+  <div class="stat-item">
+    <div class="stat-icon">
+      <i class="fa-solid fa-seedling"></i>
+    </div>
+    <div>
+      <h4>16+</h4>
+      <small>Plant Species</small>
     </div>
   </div>
+
+  <div class="stat-item">
+    <div class="stat-icon">
+      <i class="fa-solid fa-table-cells"></i>
+    </div>
+    <div>
+      <h4>6</h4>
+      <small>Categories</small>
+    </div>
+  </div>
+
+  <div class="stat-item">
+    <div class="stat-icon">
+      <i class="fa-solid fa-award"></i>
+    </div>
+    <div>
+      <h4>100%</h4>
+      <small>Expert Curated</small>
+    </div>
+  </div>
+
+</div>
+
 </section>
 
 
 <!-- CATEGORIES SECTION -->
-<section class="categories">
+<section class="plants-section">
   <div class="container text-center">
 
-    <p class="cat-subtitle">BROWSE BY TYPE</p>
+   
     <h2 class="cat-title">Plant Categories</h2>
 
-    <div class="row mt-4">
-
-      <div class="col-md-2 col-6 mb-4">
-        <a href="/plants/all/?category=TR" class="cat-card">
-          <img src="https://res.cloudinary.com/dd2nfo3ua/image/upload/w_600/q_auto/f_auto/v1776690726/Fiddle-Leaf-Fig_al6nvf.jpg">
-          <span>Tropical</span>
-        </a>
-      </div>
-
-      <div class="col-md-2 col-6 mb-4">
-        <a href="/plants/all/?category=SU" class="cat-card">
-          <img src="https://res.cloudinary.com/dd2nfo3ua/image/upload/w_600/q_auto/f_auto/v1776690795/jade_succulent_plant_rdydl1.jpg">
-          <span>Succulents</span>
-        </a>
-      </div>
-
-      <div class="col-md-2 col-6 mb-4">
-        <a href="/plants/all/?category=HE" class="cat-card">
-          <img src="https://res.cloudinary.com/dd2nfo3ua/image/upload/w_600/q_auto/f_auto/v1776690638/Balm-lemon-balm_dzonme.jpg">
-          <span>Herbs</span>
-        </a>
-      </div>
-
-      <div class="col-md-2 col-6 mb-4">
-        <a href="/plants/all/?category=FE" class="cat-card">
-          <img src="https://res.cloudinary.com/dd2nfo3ua/image/upload/w_600/q_auto/f_auto/v1776690852/gettyimages-1026378744-1-8e6bdd98366d4686b765313800f32f52_fdbnfq.jpg">
-          <span>Ferns</span>
-        </a>
-      </div>
-
-      <div class="col-md-2 col-6 mb-4">
-        <a href="/plants/all/?category=FL" class="cat-card">
-          <img src="https://res.cloudinary.com/dd2nfo3ua/image/upload/w_600/q_auto/f_auto/v1776689653/ROSES_hrz3xo.jpg">
-          <span>Flowering</span>
-        </a>
-      </div>
-
-      <div class="col-md-2 col-6 mb-4">
-        <a href="/plants/all/?category=TRS" class="cat-card">
-          <img src="https://res.cloudinary.com/dd2nfo3ua/image/upload/w_600/q_auto/f_auto/v1776689653/TREES_jjnpri.jpg">
-          <span>Trees</span>
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 
 <!-- PLANTS SECTION -->
-<section class="plants-section">
+
   <div class="container">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -114,6 +94,43 @@
     <div class="row">
       {% for plant in plants %}
       <div class="col-md-4 mb-4">
+        <div class="plant-card">
+          {% if plant.image %}
+            <img src="{{ plant.image.url }}">
+          {% endif %}
+          <div class="plant-info">
+            <h5>{{ plant.name }}</h5>
+            <p>{{ plant.about|truncatechars:50 }}</p>
+            <span class="plant-category">{{ plant.get_category_display }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- RECENTLY ADDED PLANTS -->
+<section class="recent-section">
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+      <div>
+        <span class="hero-badge">LATEST ADDITIONS</span>
+        <h2 class="recent-title mt-2">Recently Added Plants</h2>
+      </div>
+      <a href="/plants/all/" class="btn-view-all">
+        View All Plants →
+      </a>
+    </div>
+
+    <!-- CARDS -->
+    <div class="row">
+      {% for plant in recent_plants %}
+      <div class="col-md-4 mb-4">
         {% include "plants/partials/plant_card_simple.html" with plant=plant %}
       </div>
       {% endfor %}
@@ -121,6 +138,10 @@
 
   </div>
 </section>
+
+
+
+
 
 
 <!-- WHY SECTION -->
@@ -250,4 +271,4 @@
   </div>
 </section>
 
-{% endblock %}
+{% endblock %} 

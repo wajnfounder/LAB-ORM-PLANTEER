@@ -18,4 +18,6 @@ urlpatterns = [
     path('search/', views.search_view, name='search'),
 
     path('<int:id>/country/', views.country_plants_view, name='country_plants'),
+
+    path('<int:id>/favourite/', views.toggle_favourite, name='toggle_favourite'),
 ]

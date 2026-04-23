@@ -18,6 +18,21 @@ class Plant(models.Model):
        FL = 'FL', 'Flowering'
        TRS = 'TRS', 'Trees'
 
+    class WaterLevel(models.TextChoices):
+        LOW = 'LOW', 'Low'
+        MODERATE = 'MO', 'Moderate'
+        HIGH = 'HIGH', 'High'
+
+    class LightLevel(models.TextChoices):
+        DIRECT = 'DIR', 'Direct'
+        INDIRECT = 'IND', 'Indirect'
+        LOW_LIGHT = 'LOW', 'Low Light'
+
+    class CareLevel(models.TextChoices):
+        EASY = 'EASY', 'Easy'
+        MEDIUM = 'MED', 'Medium'
+        HARD = 'HARD', 'Hard'
+
     name = models.CharField(max_length=200)
     about = models.TextField()
     used_for = models.TextField()
@@ -26,6 +41,9 @@ class Plant(models.Model):
     is_edible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     countries = models.ManyToManyField(Country, blank=True, related_name='plants')
+    water = models.CharField(max_length=10, choices=WaterLevel.choices, null=True, blank=True)
+    light = models.CharField(max_length=10, choices=LightLevel.choices, null=True, blank=True)
+    care_level = models.CharField(max_length=10, choices=CareLevel.choices, null=True, blank=True)
 
     def __str__(self):
         return self.name
