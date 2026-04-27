@@ -46,6 +46,7 @@
       <a href="/plants/{{ plant.id }}/detail/" class="details-link">
         View Details →
       </a>
+      {% if request.user.is_staff %}
       <div class="card-actions">
         <a href="/plants/{{ plant.id }}/update/">
           <i class="fa-solid fa-pen"></i>
@@ -55,6 +56,7 @@
           <i class="fa-solid fa-trash"></i>
         </a>
       </div>
+      {% endif %}
     </div>
 
   </div>

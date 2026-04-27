@@ -64,9 +64,12 @@
         </div>
         {% endif %}
 
+        <!-- EDIT BUTTON - ADMIN ONLY -->
+        {% if request.user.is_staff %}
         <a href="/plants/{{ plant.id }}/update/" class="btn btn-main mt-3">
           Edit Plant
         </a>
+        {% endif %}
 
       </div>
     </div>
@@ -102,18 +105,31 @@
     <div class="col-md-4">
       <div class="comment-form-box">
         <h5 class="detail-label mb-4">Add a Comment</h5>
-        <form method="POST">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label>Your Name *</label>
-            <input type="text" name="name" class="form-control" placeholder="e.g. Sara" required>
+
+        {% if request.user.is_authenticated %}
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label>Comment *</label>
+              <textarea name="content" class="form-control" rows="4"
+                        placeholder="Write your comment..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-main w-100">Submit 🌿</button>
+          </form>
+
+        {% else %}
+          <div class="text-center py-4">
+            <div style="font-size: 40px; color: #2e5d34;">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <p class="mt-3" style="color: #777;">
+              You need to be logged in to add a comment
+            </p>
+            <a href="/login/" class="btn btn-main me-2">Login</a>
+            <a href="/register/" class="btn-view-all">Register</a>
           </div>
-          <div class="mb-3">
-            <label>Comment *</label>
-            <textarea name="content" class="form-control" rows="4" placeholder="Write your comment..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-main w-100">Submit 🌿</button>
-        </form>
+        {% endif %}
+
       </div>
     </div>
 

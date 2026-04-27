@@ -19,6 +19,16 @@
             <h6 class="msg-name">{{ msg.first_name }} {{ msg.last_name }}</h6>
             <p class="msg-email">{{ msg.email }}</p>
           </div>
+
+          <!-- DELETE - ADMIN ONLY -->
+          {% if request.user.is_staff %}
+          <a href="/messages/{{ msg.id }}/delete/"
+             onclick="return confirm('Delete this message?')"
+             class="ms-auto">
+            <i class="fa-solid fa-trash" style="color: #2e5d34;"></i>
+          </a>
+          {% endif %}
+
         </div>
         <p class="msg-body">{{ msg.message }}</p>
         <span class="msg-date">{{ msg.created_at|date:"d M Y" }}</span>

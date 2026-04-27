@@ -295,6 +295,17 @@ a {
   font-size: 15px;
   font-weight: 500;
   transition: 0.2s;
+  padding: 0 !important;
+  line-height: normal !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.nav-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255,255,255,0.15);
+  margin: 0 4px;
 }
 
 .nav-link:hover {
@@ -605,6 +616,9 @@ a {
   transition: all 0.3s ease;
   border: 1px solid #f0f0f0;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .plant-card:hover {
@@ -617,6 +631,7 @@ a {
   height: 220px;
   object-fit: cover;
   transition: 0.4s;
+  flex-shrink: 0;
 }
 
 .plant-card:hover img {
@@ -708,6 +723,9 @@ a {
   padding: 16px;
   background: white;
   border-top: 1px solid #f0f0f0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-body h5 {
@@ -745,7 +763,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 4px;
+  margin-top: auto;
 }
 
 .details-link {
@@ -1745,6 +1763,64 @@ select.form-control {
   margin-left: 15px;
   text-decoration: none;
   color: #6c757d;
+}
+
+/* ================= AUTH ================= */
+.auth-box {
+  background: #fdf8f3;
+  border: 1px solid #e8ddd0;
+  border-radius: 24px;
+  padding: 40px;
+}
+
+.auth-icon {
+  width: 60px;
+  height: 60px;
+  background: #e6f4ea;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 24px;
+  color: #2e5d34;
+}
+
+.auth-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1c1c1c;
+}
+
+.auth-subtitle {
+  color: #888;
+  font-size: 14px;
+}
+
+.auth-label {
+  font-weight: 600;
+  color: #2e5d34;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.auth-link {
+  color: #2e5d34;
+  font-weight: 600;
+}
+
+/* DARK MODE */
+.dark-mode .auth-box {
+  background: #162816;
+  border-color: #1e3d1e;
+}
+
+.dark-mode .auth-title {
+  color: #ffffff;
+}
+
+.dark-mode .auth-subtitle {
+  color: #8ab08a;
 }
 
 /* ================= RESPONSIVE ================= */

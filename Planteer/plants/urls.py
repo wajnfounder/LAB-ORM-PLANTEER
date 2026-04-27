@@ -1,4 +1,3 @@
-
 from django.urls import path
 from . import views
 
@@ -20,4 +19,6 @@ urlpatterns = [
     path('<int:id>/country/', views.country_plants_view, name='country_plants'),
 
     path('<int:id>/favourite/', views.toggle_favourite, name='toggle_favourite'),
+
+
 ]

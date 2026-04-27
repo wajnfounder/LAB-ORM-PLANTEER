@@ -1,15 +1,11 @@
-from django.shortcuts import render
-from .models import Plant
-from .forms import PlantForm
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Plant, Comment, Country
-
-# Create your views here.
+from .forms import PlantForm
 
 
 def all_plants_view(request):
     plants = Plant.objects.all()
-    
+
     category = request.GET.get('category')
     edible = request.GET.get('edible')
     country = request.GET.get('country')
@@ -41,11 +37,13 @@ def plant_detail_view(request, id):
     related_plants = Plant.objects.filter(category=plant.category).exclude(id=plant.id)[:3]
 
     if request.method == 'POST':
-        Comment.objects.create(
-            plant=plant,
-            name=request.POST.get('name'),
-            content=request.POST.get('content'),
-        )
+        if request.user.is_authenticated:
+            Comment.objects.create(
+                plant=plant,
+                user=request.user,
+                name=request.user.username,
+                content=request.POST.get('content'),
+            )
         return redirect(f'/plants/{id}/detail/')
 
     return render(request, 'plants/detail.html', {
@@ -56,6 +54,9 @@ def plant_detail_view(request, id):
 
 
 def create_plant_view(request):
+    if not request.user.is_staff:
+        return redirect('/')
+
     if request.method == 'POST':
         name = request.POST.get('name')
         about = request.POST.get('about')
@@ -79,6 +80,9 @@ def create_plant_view(request):
 
 
 def update_plant_view(request, id):
+    if not request.user.is_staff:
+        return redirect('/')
+
     plant = get_object_or_404(Plant, id=id)
 
     if request.method == 'POST':
@@ -103,6 +107,9 @@ def update_plant_view(request, id):
 
 
 def delete_plant_view(request, id):
+    if not request.user.is_staff:
+        return redirect('/')
+
     plant = get_object_or_404(Plant, id=id)
     plant.delete()
     return redirect('/plants/all/')
@@ -142,6 +149,9 @@ def search_view(request):
 
 
 def add_plant(request):
+    if not request.user.is_staff:
+        return redirect('/')
+
     if request.method == 'POST':
         form = PlantForm(request.POST, request.FILES)
         if form.is_valid():
